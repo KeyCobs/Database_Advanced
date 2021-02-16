@@ -1,7 +1,7 @@
 # Database_Advanced
 A school project
 
-Hi and welcome reader. 
+Hi and welcome reader. This script is for Ubuntu use only
 
 <br>
 ==========Step 1==========
@@ -17,3 +17,8 @@ sudo apt -y upgrade
 <br>
 sudo apt install -y python3-pip
 <br>
+==========Step 3==========
+<br>
+Navigate to the file folder that you've placed the python script in and right click to open a terminal.
+when the terminal is opened type:
+python3 Scraping_File.py3
