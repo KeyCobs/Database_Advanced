@@ -51,7 +51,7 @@ def Scraping(url,isCalled):
         'USD': amount_USD
     })
     #export to file
-    file = open("/home/keycobs/Documents/Scripts/Scraping/BitCoinTransactions.txt",'a')
+    file = open("BitCoinTransactions.txt",'a')
     if isCalled:
         BTC_string = bitcoin_df[bitcoin_df.BTC == bitcoin_df.BTC.max()].to_string(index=False,header=False)
     else:
