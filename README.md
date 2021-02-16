@@ -21,4 +21,5 @@ sudo apt install -y python3-pip
 <br>
 Navigate to the file folder that you've placed the python script in and right click to open a terminal.
 when the terminal is opened type:
+<br>
 python3 Scraping_File.py3
