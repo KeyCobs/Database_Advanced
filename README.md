@@ -7,6 +7,7 @@ Hi and welcome reader.
 ==========Step 1==========
 <br>
 install Ubuntu. I'm using ubuntu-20.04-2.0. I installed it on a Virtual machine (Oracle vmbox)
+<br>
 ==========Step 2==========
 <br>
 install python 3 on ubuntu you can do that as followed
