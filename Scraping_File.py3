@@ -62,13 +62,7 @@ def Scraping(url,isCalled):
     file.close()
     #print(bitcoin_df.info)
     #bitcoin_df
-
-
-
-
-
-   
-
+    
 #functions call
 while True:
     print("Scrapping begins")
@@ -77,10 +71,3 @@ while True:
     isCalled = True
     print("Scrapping done waiting 1 min for next scrape. Press ctrl + c to exit")
     t.sleep(60) #1min
-
-
-
-
-
-
-
