@@ -23,3 +23,8 @@ Navigate to the file folder that you've placed the python script in and right cl
 when the terminal is opened type:
 <br>
 python3 Scraping_File.py3
+<br>
+install mongodb
+maybe compass
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+Edit this
