@@ -4,6 +4,20 @@ import subprocess
 #implement pip as a subprocess
 subprocess.check_call([sys.executable, '-m', 'pip','install','beautifulsoup4'])
 subprocess.check_call([sys.executable, '-m', 'pip','install','pandas'])
+subprocess.check_call([sys.executable, '-m', 'pip','install','pymongo'])
+
+#mongoDB
+from pymongo import MongoClient
+import urllib.parse
+username = urllib.parse.quote_plus('superuser')
+password = urllib.parse.quote_plus('testp@ss')
+try: 
+    client = MongoClient("mongodb://%s:%s@127.0.0.1:27017" % (username,password))
+    db = client["Bitcoin_db"]
+    print("Connected successfully!!!") 
+except:   
+    print("Could not connect to MongoDB") 
+
 
 #importing everything we need
 from bs4 import BeautifulSoup
@@ -56,13 +70,43 @@ def Scraping(url,isCalled):
         BTC_string = bitcoin_df[bitcoin_df.BTC == bitcoin_df.BTC.max()].to_string(index=False,header=False)
     else:
         BTC_string = bitcoin_df[bitcoin_df.BTC == bitcoin_df.BTC.max()].to_string(index=False)
-        
+
+    #insert in mongoDB
+    dataMongo = bitcoin_df[bitcoin_df.BTC == bitcoin_df.BTC.max()].to_string(index=False,header=False)
+    collections = db.Bitcoin_Highest_Value
+    stringDataMongo = dataMongo.split(" ")
+    bigHash = stringDataMongo[0]
+    bigTime = stringDataMongo[1]
+    bigBTC = stringDataMongo[2]
+    bigDollar = stringDataMongo[3]
+
+    btc_rec = {
+        "Hash": bigHash,
+        "Time":bigTime,
+        "BTC":bigBTC,
+        "USD":bigDollar
+    }
+    #insert data
+    rec_id = collections.insert_one(btc_rec)
+    print("Data inserted with record ids",btc_rec)
+
+    cursor = collections.find()
+    for record in cursor:
+        print(record)
+    #}
+
     #print(BTC_string)
     file.write('\n'+BTC_string)
     file.close()
     #print(bitcoin_df.info)
     #bitcoin_df
-    
+
+
+
+
+
+   
+
 #functions call
 while True:
     print("Scrapping begins")
@@ -71,3 +115,10 @@ while True:
     isCalled = True
     print("Scrapping done waiting 1 min for next scrape. Press ctrl + c to exit")
     t.sleep(60) #1min
+
+
+
+
+
+
+
