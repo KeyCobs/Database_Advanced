@@ -5,6 +5,7 @@ import subprocess
 subprocess.check_call([sys.executable, '-m', 'pip','install','beautifulsoup4'])
 subprocess.check_call([sys.executable, '-m', 'pip','install','pandas'])
 subprocess.check_call([sys.executable, '-m', 'pip','install','pymongo'])
+subprocess.check_call([sys.executable, '-m', 'pip','install','redis'])
 
 #mongoDB
 from pymongo import MongoClient
@@ -17,6 +18,17 @@ try:
     print("Connected successfully!!!") 
 except:   
     print("Could not connect to MongoDB") 
+
+#Reddis
+import redis
+import pickle
+import zlib
+expiration_Seconds = 60
+r = redis.Redis(
+    host = 'localhost',
+    port = 6379,
+    password = 'myP@ass'
+)
 
 
 #importing everything we need
@@ -39,6 +51,7 @@ def Scraping(url,isCalled):
     times = []
     amount_BTC = []
     amount_USD = []
+    string_BTC = []
     for container in bitcoin_containers:
         #the hash
         hash = container.find('div', class_='sc-1au2w4e-0 bTgHwk')
@@ -57,6 +70,7 @@ def Scraping(url,isCalled):
         usd = container.find_all('span', class_ = 'sc-1ryi78w-0 cILyoi sc-16b9dsl-1 ZwupP u3ufsr-0 eQTRKC')[2].text
         amount_USD.append(usd)
         #print(usd)
+        
 
     bitcoin_df = pd.DataFrame({
         'Hash': hashes,
@@ -94,6 +108,22 @@ def Scraping(url,isCalled):
     for record in cursor:
         print(record)
     #}
+
+
+
+    #insert redis
+    #dataRedis = bitcoin_df(index=False,header=False)
+    count = 0
+    print(bitcoin_df.iloc[0].to_string())
+    number = bitcoin_df['Hash'].size - 1
+    for x in range(number):
+        stringRedis = bitcoin_df.loc[x].to_string(index=False,header=False)
+        r.set(count,stringRedis, ex=60)
+        count = count + 1
+   
+
+
+
 
     #print(BTC_string)
     file.write('\n'+BTC_string)
