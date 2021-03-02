@@ -68,6 +68,6 @@ redis-cli ping
 <br>
 redis-cli
 <br>
->> redis 127.0.0.1:6379> ping
+>> redis 127.0.0.1:6379> <Type: "ping">
 <br>
 >>Pong
