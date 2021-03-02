@@ -51,3 +51,23 @@ If you are heaving issues and getting errors about installing TCL do the follow.
 Installing tcl:
 <br>
 sudo apt-get install -y tcl-dev
+<br>
+Installing redis-server:
+<br>
+sudo apt install redis-server
+<br>
+Checking if everything works:
+<br>
+cd src
+<br>
+redis-server
+<br>
+redis-cli ping
+<br>
+>> Pong
+<br>
+redis-cli
+<br>
+>> redis 127.0.0.1:6379> ping
+<br>
+>>Pong
