@@ -24,7 +24,30 @@ when the terminal is opened type:
 <br>
 python3 Scraping_File.py3
 <br>
-install mongodb
-maybe compass
-https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-Edit this
+==========Step 4==========
+<br>
+Installing MongoDB for storing our data
+<br>
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+<br>
+I also installed mongo compass for a better UI. This isn't necessary
+<br>
+==========Step 5==========
+<br>
+Now we are installing Redis this is very simple but a very long process
+<br>
+wget http://download.redis.io/redis-stable.tar.gz
+<br>
+tar xvzf redis-stable.tar.gz
+<br>
+cd redis-stable
+<br>
+make
+<br>
+make test
+<br>
+If you are heaving issues and getting errors about installing TCL do the follow. First make sure your ubuntu is up-to-date (sudo apt-get update -y) followed by (sudo apt-get upgrade -y)
+<br>
+Installing tcl:
+<br>
+sudo apt-get install -y tcl-dev
